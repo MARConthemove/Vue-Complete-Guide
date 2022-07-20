@@ -4,27 +4,41 @@ const app = Vue.createApp({
       counter: 0,
       name: '',
       lastName: '',
-      fullname: '',
+      // fullName: '',
     }
   },
   computed: {
-    // fullname() {
-    //   console.log('running again...')
-    //   if (this.name === '') {
-    //     return ''
-    //   }
-    //   return this.name + ' ' + 'Gätcke'
-    // },
+    fullName() {
+      if (this.name === '' || this.lastName === '') {
+        return ''
+      }
+      return this.name + ' ' + this.lastName
+    },
   },
   watch: {
-    name(value) {
-      if (value === '') {
-        this.fullname = ''
-      } else {
-        // the value will automatically passed in to the method
-        this.fullname = value + ' ' + 'Gaetcke'
+    counter(value) {
+      if (value > 50) {
+        const that = this
+        setTimeout(function () {
+          that.counter = 0
+        }, 2000)
       }
     },
+    // name(value) {
+    //   if (value === '') {
+    //     this.fullName = ''
+    //   } else {
+    //     // the value will automatically passed in to the method
+    //     this.fullName = value + ' ' + this.lastName
+    //   }
+    // },
+    // lastName(value) {
+    //   if (value === '') {
+    //     this.fullName = ''
+    //   } else {
+    //     this.fullName = this.name + ' ' + value
+    //   }
+    // },
   },
   methods: {
     setName(event) {
@@ -39,6 +53,7 @@ const app = Vue.createApp({
     },
     resetInput() {
       this.name = ''
+      this.lastName = ''
     },
   },
 })
