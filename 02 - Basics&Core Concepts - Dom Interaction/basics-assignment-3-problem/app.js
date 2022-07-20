@@ -1,29 +1,32 @@
 const app = Vue.createApp({
   data() {
     return {
-      result: null,
-      output: '',
+      number: 0,
     }
   },
   watch: {
-    result(value) {
+    result() {
       setTimeout(() => {
-        this.output = 0
+        console.log('you have 5 seconds left')
+        this.number = 0
       }, 5000)
-      if (value < 37) {
-        this.output = 'Not there yet'
-      } else if (value === 37) {
-        this.output = this.result
+    },
+  },
+  computed: {
+    result() {
+      if (this.number < 37) {
+        return 'Not there yet'
+      } else if (this.number === 37) {
+        return this.number
       } else {
-        this.output = 'Too much!'
+        return 'Too much!'
       }
     },
   },
-
   methods: {
-    add(num) {
-      this.result += num
-      console.log(this.result)
+    addNumber(num) {
+      this.number += num
+      console.log(this.number)
     },
   },
 })
